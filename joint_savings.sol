@@ -5,7 +5,6 @@ Joint Savings Account
 
 pragma solidity ^0.5.0;
 
-// Define a new contract named `JointSavings`
 contract JointSavings {
 
     // Varaibles
@@ -15,11 +14,7 @@ contract JointSavings {
     uint public lastToWithdrawAmount;
     uint public contractBalance;
 
-    /*
-    Define a function named **withdraw** that will accept two arguments.
-    - A `uint` variable named `amount`
-    - A `payable address` named `recipient`
-    */
+    // Withdraw function
     function withdraw(uint amount, address payable recipient) public {
 
         // Require the account making the function call to be the owner of accountOne or accountTwo
@@ -42,24 +37,20 @@ contract JointSavings {
         // get new contractBalance
         contractBalance = address(this).balance;
     }
-
-    // Define a `public payable` function named `deposit`.
+    
+    // Deposit function
     function deposit() public payable {
         // get new contractBalance
         contractBalance = address(this).balance;
     }
 
-    /*
-    Define a `public` function named `setAccounts` that receive two `address payable` arguments named `account1` and `account2`.
-    */
+    // SetAccounts of saving account
     function setAccounts(address payable account1, address payable account2) public{
         // Set the accountOne and accountTwo addresses
         accountOne = account1;
         accountTwo = account2;
     }
 
-    /*
-    Finally, add the **default fallback function** so that your contract can store Ether sent from outside the deposit function.
-    */
+    // Default function
     function() external payable {}
 }
